@@ -1,0 +1,23 @@
+//reverse a string
+class Solution {
+    public String reverseWords(String s) {
+        String ans[] = s.split(" ");
+        int i=0;
+        while(i<ans.length)
+        {
+            String k = ans[i];
+            StringBuilder br = new StringBuilder(k);
+            ans[i] = br.reverse().toString();
+            i++;
+        }
+        i =0;
+        StringBuilder br = new StringBuilder();
+        while(i<ans.length)
+        {
+            br.append(ans[i]);
+            br.append(" ");
+            i++;
+        }
+        return br.toString().trim();
+    }
+}

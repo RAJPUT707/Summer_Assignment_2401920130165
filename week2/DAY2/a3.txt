@@ -1,0 +1,34 @@
+//all ana gram
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        int freq1 [] = new int [26]; // did it for p
+        int freq2 [] = new int [26]; // did it for s
+        List<Integer> list = new ArrayList<>();
+        if(p.length()>s.length())
+        {
+            return list;
+        }
+        for(int i=0;i<p.length();i++)
+        {
+            freq1[p.charAt(i)-'a']++;
+        }
+        for(int i=0;i<p.length();i++)
+        {
+            freq2[s.charAt(i)-'a']++;
+        }
+        if(Arrays.equals(freq1,freq2))
+        {
+            list.add(0);
+        }
+        for(int i=p.length();i<s.length();i++)
+        {
+            freq2[s.charAt(i-p.length())-'a']--;
+            freq2[s.charAt(i)-'a']++;
+            if(Arrays.equals(freq1,freq2))
+            {
+                list.add(i-p.length()+1);
+            }
+        }
+        return list;
+    }
+}

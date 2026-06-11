@@ -1,0 +1,48 @@
+//decde
+import java.util.*;
+
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> numStack = new Stack<>();
+        Stack<String> strStack = new Stack<>();
+        
+        int num = 0;
+        String str = "";
+        
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                num = num * 10 + (ch - '0');
+            }
+            else if (ch == '[') {
+                numStack.push(num);     
+                strStack.push(str);    
+
+                num = 0;
+                str = "";
+            }
+  
+            else if (ch == ']') {
+                int k = numStack.pop();     
+                String prev = strStack.pop(); 
+                
+                String temp = "";
+                
+             
+                for (int j = 0; j < k; j++) {
+                    temp += str;
+                }
+                
+              
+                str = prev + temp;
+            }
+            
+
+            else {
+                str += ch;
+            }
+        }
+        
+        return str;
+    }
+}
